@@ -559,8 +559,8 @@
     <div class="review-by-people-2">
         <p>"Chúng tôi đã thuê một chiếc ô tô từ trang web này và đã có một trải nghiệm tuyệt vời! Việc đặt xe rất dễ dàng và giá thuê rất phải chăng. "</p>
         <div>
-            <img id="reviewed-by-people-donald-trump" src="{{ asset('storage/review-by-people-home/lan-anh.png') }}" alt="reviewed-by-people-donald-trump">
-            <h1>Dao Lan Anh</h1>
+            <img id="reviewed-by-people-donald-trump" src="{{ asset('storage/review-by-people-home/reviewed-by-people-donald-trump.jpg') }}" alt="reviewed-by-people-donald-trump">
+            <h1>Đỗ Nam Trung</h1>
         </div>
     </div>
     <div class="review-by-people-2">
