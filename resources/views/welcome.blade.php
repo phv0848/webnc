@@ -11,6 +11,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon (1).ico') }}">
         <style>
             *{
                 margin: 0;
@@ -919,8 +920,8 @@
             <div class="review-by-people-2">
                 <p>"Chúng tôi đã thuê một chiếc ô tô từ trang web này và đã có một trải nghiệm tuyệt vời! Việc đặt xe rất dễ dàng và giá thuê rất phải chăng. "</p>
                 <div>
-                    <img id="reviewed-by-people-donald-trump" src="{{ asset('storage/review-by-people-home/lan-anh.png') }}" alt="reviewed-by-people-donald-trump">
-                    <h1>Dao Lan Anh</h1>
+                    <img id="reviewed-by-people-donald-trump" src="{{ asset('storage/review-by-people-home/reviewed-by-people-donald-trump.jpg') }}" alt="reviewed-by-people-donald-trump">
+                    <h1>Donald trump</h1>
                 </div>
             </div>
             <div class="review-by-people-2">

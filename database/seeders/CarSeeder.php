@@ -12,7 +12,7 @@ class CarSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('Car')->insert(
+        DB::table('Cars')->insert([
             //audi
         [
             'trademark' => 'Audi',
@@ -27,7 +27,7 @@ class CarSeeder extends Seeder
         [
             'trademark' => 'Audi',
             'description' => 'Chiếc xe này có thiết kế thể thao với đường nét sắc sảo, thân xe màu bạc bóng loáng cùng lưới tản nhiệt nổi bật. Đèn pha LED hiện đại cùng cản trước khí động học mang đến vẻ mạnh mẽ và năng động. Bộ mâm 18 inch và lốp bám đường giúp chiếc xe vận hành ổn định và êm ái. Nội thất sang trọng với các chi tiết tinh tế, mang lại trải nghiệm lái thú vị và thoải mái.',
-            'name' => 'A4 2024',
+            'name' => 'A6 2025',
             'seat_count' => '4',
             'price_per_day' => '2000000',
             'quantity' => '3',
@@ -308,7 +308,7 @@ class CarSeeder extends Seeder
             'remaining_quantity' => '5',
             'image_url' => 'cars/Jaguar-XJL.webp'
         ],
-        //land Land-cruiser-prado-2024.jpg
+        //land
         [
             'trademark' => 'Land-Rover',
             'description' => 'Chiếc xe này có thiết kế thể thao với đường nét sắc sảo, thân xe màu bạc bóng loáng cùng lưới tản nhiệt nổi bật. Đèn pha LED hiện đại cùng cản trước khí động học mang đến vẻ mạnh mẽ và năng động. Bộ mâm 18 inch và lốp bám đường giúp chiếc xe vận hành ổn định và êm ái. Nội thất sang trọng với các chi tiết tinh tế, mang lại trải nghiệm lái thú vị và thoải mái.',
@@ -368,7 +368,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'ES-2021.jpg'
+            'image_url' => 'cars/ES-2021.jpg'
         ],
         [
             'trademark' => 'Lexus',
@@ -378,7 +378,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'GX-2024.jpg'
+            'image_url' => 'cars/GX-2024.jpg'
         ],
         [
             'trademark' => 'Lexus',
@@ -388,7 +388,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'IS-2021.jpg'
+            'image_url' => 'cars/IS-2021.jpg'
         ],
         [
             'trademark' => 'Lexus',
@@ -398,7 +398,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'LM-2024.jpg'
+            'image_url' => 'cars/LM-2024.jpg'
         ],
         [
             'trademark' => 'Lexus',
@@ -408,7 +408,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'NX-2022.jpg'
+            'image_url' => 'cars/NX-2022.jpg'
         ],
         [
             'trademark' => 'Lexus',
@@ -418,7 +418,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'RX-2023.jpg'
+            'image_url' => 'cars/RX-2023.jpg'
         ],
         //mer
         [
@@ -429,7 +429,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'a-class.jpg'
+            'image_url' => 'cars/a-class.jpg'
         ],
         [
             'trademark' => 'Mercedes-Benz',
@@ -439,7 +439,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'c-class.jpg'
+            'image_url' => 'cars/c-class.jpg'
         ],
         [
             'trademark' => 'Mercedes-Benz',
@@ -449,7 +449,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'g-class.jpg'
+            'image_url' => 'cars/g-class.jpg'
         ],
         [
             'trademark' => 'Mercedes-Benz',
@@ -459,7 +459,7 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 's-class.jpg'
+            'image_url' => 'cars/s-class.jpg'
         ],
         [
             'trademark' => 'Mercedes-Benz',
@@ -469,8 +469,8 @@ class CarSeeder extends Seeder
             'price_per_day' => '2000000',
             'quantity' => '5',
             'remaining_quantity' => '5',
-            'image_url' => 'v-class.jpg'
+            'image_url' => 'cars/v-class.jpg'
         ],
-    );
+    ]);
     }
 }

@@ -10,8 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $bookings = $user->bookings; // Quan hệ đã được định nghĩa trong model User
-
+        $bookings = $user->bookings;
         return view('dashboard', compact('user', 'bookings'));
     }
 }

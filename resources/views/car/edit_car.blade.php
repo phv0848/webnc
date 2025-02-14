@@ -7,6 +7,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Car Rental</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon (1).ico') }}">
     <style>
         *{
             padding: 0;

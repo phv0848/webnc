@@ -82,31 +82,31 @@ class CarController extends Controller
     return redirect('/car/create')->with('success', 'Thêm xe thành công');
     }
 
-public function show($id, Request $request)
-{
-    $car = Car::with('reviews.user')->findOrFail($id);
-    $averageRating = Review::where('car_id', $id)->avg('rating');
-    $quantity = Review::where('car_id', $id)->count();
+    public function show($id, Request $request)
+    {
+        $car = Car::with('reviews.user')->findOrFail($id);
+        $averageRating = Review::where('car_id', $id)->avg('rating');
+        $quantity = Review::where('car_id', $id)->count();
 
-    // Lấy số lượng đánh giá theo từng sao
-    $reviewCounts = Review::where('car_id', $id)
-        ->selectRaw('rating, COUNT(*) as count')
-        ->groupBy('rating')
-        ->pluck('count', 'rating');
+        // Lấy số lượng đánh giá theo từng sao
+        $reviewCounts = Review::where('car_id', $id)
+            ->selectRaw('rating, COUNT(*) as count')
+            ->groupBy('rating')
+            ->pluck('count', 'rating');
 
-    // Lọc theo số sao (nếu có)
-    $rating = $request->query('rating');
-    $reviewsQuery = Review::where('car_id', $id)
-        ->when($rating, function ($query, $rating) {
-            return $query->where('rating', $rating);
-        })
-        ->latest();
+        // Lọc theo số sao (nếu có)
+        $rating = $request->query('rating');
+        $reviewsQuery = Review::where('car_id', $id)
+            ->when($rating, function ($query, $rating) {
+                return $query->where('rating', $rating);
+            })
+            ->latest();
 
-    // Luôn phân trang và giữ tham số trên URL
-    $reviews = $reviewsQuery->paginate(5)->onEachSide(1)->withQueryString();
+        // Luôn phân trang và giữ tham số trên URL
+        $reviews = $reviewsQuery->paginate(5)->onEachSide(1)->withQueryString();
 
-    return view('car.car_id', compact('car', 'averageRating', 'quantity', 'reviews', 'rating', 'reviewCounts'));
-}
+        return view('car.car_id', compact('car', 'averageRating', 'quantity', 'reviews', 'rating', 'reviewCounts'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -149,7 +149,7 @@ public function show($id, Request $request)
     }
 
     public function CarHome(){
-        $cars = Car::latest()->take(6)->get();
+        $cars = Car::inRandomOrder()->take(6)->get();
         return view('welcome',compact('cars'));
     }
 

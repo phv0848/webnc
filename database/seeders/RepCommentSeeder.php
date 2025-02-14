@@ -13,7 +13,7 @@ class RepCommentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('repComment')->insert([
+        DB::table('rep_comments')->insert([
             [
                 'review_id' => 1,
                 'created_at' => Carbon::now(),

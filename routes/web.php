@@ -28,47 +28,41 @@ Route::get('/', function () {
 Route::get('/', [CarController::class,'CarHome']);
 
 Route::get('/filter-cars', [CarController::class, 'filterCars'])->name('filter.cars');
-Route::get('/cars', [CarController::class, 'index'])->name('car.index');
+Route::get('/car', [CarController::class, 'index'])->name('car.index');
+Route::get('/car/{id}',[CarController::class,'show'])->name('car.show');
+
+
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
-    Route::resource('/car', CarController::class)->names('car')->except('car.create');
+    Route::resource('/car', CarController::class)->names('car')->except(['index','show']);
     Route::resource('/booking', BookingController::class)->names('bookings');
+    Route::get('/booking/add_book/{car_id}/{price_per_day}', [BookingController::class, 'create'])->name('bookings.create');
 });
 Route::middleware('auth','role:admin')->group(function(){
     // Route::resource('/car', CarController::class)->names('car');
     Route::get('/car/create', [CarController::class, 'create'])->name('car.create');
+    Route::delete('/car/{id}',[CarController::class,'destroy'])->name('car.destroy');
+    Route::get('/car/{id}/edit', [CarController::class, 'edit'])->name('car.edit');
+    Route::put('/car/{id}', [CarController::class, 'update'])->name('car.update');
+    Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
+    Route::post('/admin/bookings/{id}',[AdminController::class,'approveBooking'])->name('admin.approveBooking');
+    Route::post('/admin/bookings/adminGiveBack/{id}',[AdminController::class,'adminGiveBack'])->name('admin.adminGiveBack');
 });
-Route::get('/car/{id}',[CarController::class,'show'])->name('car.show');
-Route::delete('/car/{id}',[CarController::class,'destroy'])->name('car.destroy');
-Route::get('/car/{id}/edit', [CarController::class, 'edit'])->name('car.edit');
-Route::put('/car/{id}', [CarController::class, 'update'])->name('car.update');
-Route::get('/booking/add_book/{car_id}/{price_per_day}', [BookingController::class, 'create'])->name('bookings.create');
 Route::get('/booking/{id}/edit',[BookingController::class, 'edit'])->name('booking.edit');
 Route::get('/booking/{id}',[BookingController::class, 'update'])->name('booking.update');
 Route::delete('/booking/{id}',[CarController::class,'destroy'])->name('booking.destroy');
 Route::get('/review/create',[ReviewController::class,'create'])->name('review.create');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::post('/repcomments/store', [RepCommentController::class, 'store'])->name('repcomments.store');
-Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
-Route::post('/admin/bookings/{id}',[AdminController::class,'approveBooking'])->name('admin.approveBooking');
+
 Route::get('/about',function(){
     return view('user.about');
 });
 Route::view('/feedback', 'user.feedback');
 Route::view('/contact', 'user.contact');
-Route::post('/admin/bookings/adminGiveBack/{id}',[AdminController::class,'adminGiveBack'])->name('admin.adminGiveBack');
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
