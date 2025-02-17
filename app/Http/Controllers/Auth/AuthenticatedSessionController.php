@@ -30,7 +30,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect('/car');
-        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

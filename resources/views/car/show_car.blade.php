@@ -725,7 +725,7 @@
                     </div>
                 </div>
 
-                <a href="/car/{{$car->id}}">Xem chi tiết</a>
+                <a href="/car/show/{{$car->id}}">Xem chi tiết</a>
             </div>
             @empty
                 <p class="text-center">Không có xe nào.</p>

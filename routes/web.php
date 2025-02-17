@@ -22,14 +22,14 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', [CarController::class,'CarHome']);
 
 Route::get('/filter-cars', [CarController::class, 'filterCars'])->name('filter.cars');
 Route::get('/car', [CarController::class, 'index'])->name('car.index');
-Route::get('/car/{id}',[CarController::class,'show'])->name('car.show');
+Route::get('/car/show/{id}',[CarController::class,'show'])->name('car.show');
 
 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -42,7 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking/add_book/{car_id}/{price_per_day}', [BookingController::class, 'create'])->name('bookings.create');
 });
 Route::middleware('auth','role:admin')->group(function(){
-    // Route::resource('/car', CarController::class)->names('car');
     Route::get('/car/create', [CarController::class, 'create'])->name('car.create');
     Route::delete('/car/{id}',[CarController::class,'destroy'])->name('car.destroy');
     Route::get('/car/{id}/edit', [CarController::class, 'edit'])->name('car.edit');
@@ -57,7 +56,6 @@ Route::delete('/booking/{id}',[CarController::class,'destroy'])->name('booking.d
 Route::get('/review/create',[ReviewController::class,'create'])->name('review.create');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::post('/repcomments/store', [RepCommentController::class, 'store'])->name('repcomments.store');
-
 Route::get('/about',function(){
     return view('user.about');
 });

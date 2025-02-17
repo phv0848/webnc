@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-
+use App\Models\User;
 class LoginRequest extends FormRequest
 {
     /**
@@ -28,7 +28,16 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'password' => ['required'],
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'email.required' => 'vui lòng nhập email',
+            'email.string' => 'email sai định dạng',
+            'email.email' => 'email sai định dạng',
+            'password.required' => 'vui lòng nhập mật khẩu'
         ];
     }
 
@@ -41,11 +50,25 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        // if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        //     RateLimiter::hit($this->throttleKey());
+
+        //     throw ValidationException::withMessages([
+        //         'email' => trans('auth.failed'),
+        //     ]);
+        // }
+        if (!User::where('email', $this->email)->exists()) {
+            throw ValidationException::withMessages([
+                'email' => 'Email không tồn tại',
+            ]);
+        }
+
+        // Nếu email tồn tại, kiểm tra đăng nhập
+        if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'password' => 'Mật khẩu không đúng',
             ]);
         }
 

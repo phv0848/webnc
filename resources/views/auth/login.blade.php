@@ -1,72 +1,100 @@
-{{-- <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>Car Rental</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon (1).ico') }}">
     <style>
-        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f5f5f5; }
-        .login-container { width: 300px; padding: 20px; background: white; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-        input, button { width: 100%; padding: 10px; margin-top: 10px; }
+        body{
+            background-color: #F8F8F8;
+        }
+        .login-container{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .login-container>ion-icon{
+            font-size: 25px;
+            color: red;
+        }
+        .login-container input{
+            height: 30px;
+            margin: 5px 0;
+        }
+        .login-container button{
+            display: flex;
+            justify-content: center;
+            border: none;
+            color: white;
+            background-color: #FA4226;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .error-message{
+            display: flex;
+            color: red;
+            align-items: center;
+            height: 15px;
+        }
+        form ion-icon{
+            margin: 0;
+            height: 15px;
+        }
+        #resgiter{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
+        <ion-icon name="car-sport" onclick="window.location.href='http://127.0.0.1:8000/';" style="cursor: pointer"></ion-icon>
         <h2>Đăng nhập</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Mật khẩu" required>
+            <input type="email" name="email" placeholder="Email" >
+            @error('email')
+                <div class="error-message">
+                    <ion-icon name="alert-circle-outline"></ion-icon>
+                    <p>{{ $message }}</p>
+                </div>
+            @enderror
+            <input type="password" name="password" placeholder="Mật khẩu">
+            @error('password')
+                <div class="error-message">
+                    <ion-icon name="alert-circle-outline"></ion-icon>
+                    <p>{{ $message }}</p>
+                </div>
+            @enderror
             <button type="submit">Đăng nhập</button>
         </form>
-        <a href="{{route('password.request')}}"></a>
+        <div>
+            <a href="{{route('password.request')}}">Quên mật khẩu?</a>
+            <div id="resgiter">
+                <p>bạn chưa có tài khoản?</p>
+                <a href="/register">nhấn để đăng kí</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
